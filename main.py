@@ -1,5 +1,4 @@
-from sklearn.linear_model import LinearRegression
-#from sklearn import svm
+from sklearn import svm
 from tkinter import *
 from PIL import Image, ImageDraw
 import csv
@@ -102,11 +101,10 @@ class Paint(object):
             else:
                 dataset.append(1)
         X_TEST = [dataset]
-        outcome = predictor.predict(X=X_TEST)
-        #outcome = clf.predict(X=X_TEST)
-        self.Label1.configure(text=round(outcome[0]))
+        outcome = clf.predict(X=X_TEST)
+        self.Label1.configure(text=outcome)
         self.Label1.update()
-        print(f'Outcome : {round(outcome[0])}')
+        print(f'Outcome : {outcome}')
 
 
 def train():
@@ -120,11 +118,9 @@ def train():
                 temp.append(int(i))
             TRAIN_INPUT.append(temp)
             TRAIN_OUTPUT.append(int(a[400]))
-    predictor.fit(X=TRAIN_INPUT, y=TRAIN_OUTPUT)
-    #clf.fit(X=TRAIN_INPUT, y=TRAIN_OUTPUT)
+    clf.fit(X=TRAIN_INPUT, y=TRAIN_OUTPUT)
 
 if __name__ == '__main__':
-    #clf = svm.SVC(gamma=0.001)
-    predictor = LinearRegression()
+    clf = svm.SVC()
     train()
     Paint()
