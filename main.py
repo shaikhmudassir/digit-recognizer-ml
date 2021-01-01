@@ -80,7 +80,7 @@ class Paint(object):
         data_label = self.text1.get("1.0",'end-1c')
         dataset.append(data_label)
 
-        with open('dataset.csv','a') as f:
+        with open('dataset.csv','a',newline='') as f:
             w = csv.writer(f) 
             w.writerow(dataset)
 
